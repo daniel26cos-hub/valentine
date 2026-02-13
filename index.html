@@ -129,18 +129,75 @@
     .gif-wrap{
       display:none;
       margin: 14px auto 0;
-      width: min(360px, 90vw);
-      border-radius: 22px;
+      width: min(520px, 92vw);
+      height: min(520px, 92vw);
+      border-radius: 26px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.04);
       box-shadow: 0 18px 60px rgba(0,0,0,.30);
       overflow:hidden;
+      position: relative;
       transform-origin: center;
     }
-    .gif-wrap img{
-      display:block;
+
+    .gif-wrap .gif-bg{
+      position:absolute;
+      inset:-8%;
+      width:116%;
+      height:116%;
+      object-fit: cover;
+      opacity: .28;
+      filter: blur(1.5px) saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+
+    .gif-wrap::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at 50% 40%, rgba(0,0,0,.12), rgba(0,0,0,.42));
+      pointer-events:none;
+    }
+
+    .photo-frame{
+      position:absolute;
+      inset: 12%;
+      border-radius: 22px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      z-index: 2;
+      backdrop-filter: blur(2px);
+    }
+
+    .photo-frame::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: 22px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      pointer-events:none;
+    }
+
+    .photo{
       width:100%;
-      height:auto;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.01);
+    }
+
+    .photo-caption{
+      position:absolute;
+      left: 12px;
+      bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.28);
+      border: 1px solid rgba(255,255,255,.14);
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 3;
     }
 
     .success{
@@ -194,8 +251,12 @@
       </div>
 
       <!-- Появится после клика Yes -->
-      <div class="gif-wrap" id="gifWrap" aria-label="valentine gif">
-        <img src="valentine.gif" alt="Cute cats gif">
+      <div class="gif-wrap" id="gifWrap" aria-label="valentine scene">
+        <img class="gif-bg" src="./valentine.gif" alt="">
+        <div class="photo-frame">
+          <img class="photo" src="./ourphoto.jpg" alt="Us">
+          <div class="photo-caption">💞</div>
+        </div>
       </div>
 
       <div class="success" id="success">
